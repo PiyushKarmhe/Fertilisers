@@ -7,11 +7,11 @@ app = FastAPI()
 
 # Defining a Pydantic model
 class FeaturesRequest(BaseModel):
-    feature1: str
-    feature2: str
-    feature3: int
-    feature4: int
-    feature5: int
+    SoilType: str
+    CropType: str
+    Nitrogen: int
+    Potassium: int
+    Phosphorous: int
 
 # Get the directory of the current script
 script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -44,9 +44,9 @@ async def root():
 async def predict(request: Request, features_request: FeaturesRequest):
 
     # features = ["Sandy","Maize",36,0,0]
-    features = [features_request.feature1, features_request.feature2,
-                features_request.feature3, features_request.feature4,
-                features_request.feature5]
+    features = [features_request.SoilType, features_request.CropType,
+                features_request.Nitrogen, features_request.Potassium,
+                features_request.Phosphorous]
     
     features = preProcess(features)
 
